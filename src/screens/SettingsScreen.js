@@ -6,7 +6,7 @@ import {Icon} from "react-native-elements";
 import DrawerIcon from '../components/menu-icon/menu-icon';
 
 
-export default class SettingsScreen extends Component {
+export default class ServicesScreen extends Component {
     static navigationOptions = {
         drawerLabel: 'Usługi',
         drawerIcon: ({ tintColor }) => <Icon name={'build'} color={tintColor}/>
@@ -14,7 +14,7 @@ export default class SettingsScreen extends Component {
     render(){
         return (
             <View>
-                <DrawerIcon/>
+                <DrawerIcon name={'Serwisy'}/>
                 <View style={{alignItems: 'center'}}>
                     <Text>Usługi</Text>
                 </View>

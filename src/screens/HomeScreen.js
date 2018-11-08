@@ -6,14 +6,14 @@ import DrawerIcon from '../components/menu-icon/menu-icon';
 import {Icon} from "react-native-elements";
 
 export default class HomeScreen extends Component {
-    static navigationOptions = {
+     static navigationOptions = {
         drawerLabel: 'Alerty',
         drawerIcon: ({ tintColor }) => (<Icon name={'notifications'} color={tintColor}/>  ),
     };
     render(){
         return (
             <View>
-                <DrawerIcon/>
+                <DrawerIcon name={'Alerty'}/>
                 <View style={{alignItems: 'center'}}>
                     <Text>Alerty</Text>
                 </View>
