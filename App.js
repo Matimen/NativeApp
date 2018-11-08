@@ -7,19 +7,11 @@ import HomeScreen from "./src/screens/HomeScreen";
 import DrawerComponent from "./src/components/drawer/drawer";
 
 export default class App extends React.Component {
-    static navigationOptions = {
-        headerTitle: <Text>Logo</Text>,
-        headerRight: (
-            <Button
-                onPress={() => alert('This is a button!')}
-                title="Info"
-                color="black"
-            />
-        ),
-    };
-    componentDidMount(){
+
+    componentDidMount() {
         StatusBar.setHidden(true);
     }
+
     render() {
         return (
             <Navigator/>
