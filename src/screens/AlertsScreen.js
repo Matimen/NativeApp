@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
 import { Table, TableWrapper, Row } from 'react-native-table-component';
+import {Icon} from "react-native-elements";
+import {
+    View, Text, StyleSheet, TouchableOpacity, Button, ScrollView
+} from 'react-native';
+import DrawerIcon from '../components/menu-icon/menu-icon';
 
 
-export default class AlertyScreen extends Component {
+export default class AlertsScreen extends Component {
+    static navigationOptions = {
+        drawerLabel: 'Alerty',
+        drawerIcon: ({ tintColor }) => (<Icon name={'notifications'} color={tintColor}/>  ),
+    };
     constructor(props) {
         super(props);
         this.state = {

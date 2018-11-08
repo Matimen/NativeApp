@@ -4,10 +4,11 @@ import {createDrawerNavigator, DrawerItems} from 'react-navigation';
 
 import SettingsScreen from "./src/screens/SettingsScreen";
 import HomeScreen from "./src/screens/HomeScreen";
-import AlertyScreen from "./src/screens/AlertyScreen";
+import AlertsScreen from "./src/screens/AlertsScreen";
 import DrawerComponent from "./src/components/drawer/drawer";
 
 export default class App extends React.Component {
+
     componentDidMount(){
         StatusBar.setHidden(true);
     }
@@ -21,8 +22,8 @@ export default class App extends React.Component {
 const Navigator = createDrawerNavigator(
     {
         Home: HomeScreen,
-        Settings: SettingsScreen,
-        Alerty: AlertyScreen
+        Usługi: SettingsScreen,
+        Alerty: AlertsScreen
     },
     {
         contentComponent: DrawerComponent
