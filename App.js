@@ -1,27 +1,28 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Button} from 'react-native-elements';
-import MyHeader from './src/components/common/header.js';
+import {Text, View, SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {createDrawerNavigator, DrawerItems} from 'react-navigation';
+
+import SettingsScreen from "./src/screens/SettingsScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import DrawerComponent from "./src/components/drawer/drawer";
 
 export default class App extends React.Component {
+    componentDidMount(){
+        StatusBar.setHidden(true);
+    }
     render() {
         return (
-            <View style={styles.container}>
-                <MyHeader />
-                <Text>LOOOsdOL</Text>
-
-                <Button
-                    raised
-                    icon={{name: 'cached'}}
-                    title='BUTTON WITH ICON'/>
-            </View>
-
+            <Navigator/>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-
+const Navigator = createDrawerNavigator(
+    {
+        Home: HomeScreen,
+        Settings: SettingsScreen
     },
-});
+    {
+        contentComponent: DrawerComponent
+    }
+);

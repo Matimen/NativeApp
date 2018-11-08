@@ -1,46 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {Text, View} from 'react-native';
 
-export default class SideMenu extends React.Component {
-    constructor () {
-        super();
-        this.state = {
-            isOpen: false
-        }
-        this.toggleSideMenu = this.toggleSideMenu.bind(this)
-    }
 
-    toggleSideMenu () {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 
-    render () {
-        const MenuComponent = (
-            <View style={{flex: 1, backgroundColor: '#ededed', paddingTop: 50}}>
-                <List containerStyle={{marginBottom: 20}}>
-                    {
-                        list.map((l, i) => (
-                            <ListItem
-                                roundAvatar
-                                onPress={() => console.log('Pressed')}
-                                avatar={l.avatar_url}
-                                key={i}
-                                title={l.name}
-                                subtitle={l.subtitle}
-                            />
-                        ))
-                    }
-                </List>
-            </View>
-        )
-
+export default class SideMen extends Component {
+    render() {
         return (
-            <SideMenu
-                isOpen={this.state.isOpen}
-                menu={MenuComponent}>
-                <App toggleSideMenu={this.toggleSideMenu.bind(this)} />
-            </SideMenu>
-        )
+            <View>
+                <Text>Side menu</Text>
+            </View>
+        );
     }
 }
