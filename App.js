@@ -1,14 +1,28 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {styles} from "src/styles/app-styles";
-import SideMenu from "src/components/side-menu/side-menu";
+import {Text, View, SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {createDrawerNavigator, DrawerItems} from 'react-navigation';
+
+import SettingsScreen from "./src/screens/SettingsScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import DrawerComponent from "./src/components/drawer/drawer";
 
 export default class App extends React.Component {
+    componentDidMount(){
+        StatusBar.setHidden(true);
+    }
     render() {
         return (
-            <View style={styles.container}>
-                <SideMenu/>
-            </View>
+            <Navigator/>
         );
     }
 }
+
+const Navigator = createDrawerNavigator(
+    {
+        Home: HomeScreen,
+        Settings: SettingsScreen
+    },
+    {
+        contentComponent: DrawerComponent
+    }
+);
