@@ -1,25 +1,39 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-
-
 import {
     View, Text, StyleSheet, TouchableOpacity, Button
 } from 'react-native';
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import {Icon} from "react-native-elements";
+import { Container, Header, Content, Card, CardItem, Body } from 'native-base';
+
 
 export default class HomeScreen extends Component {
-    static navigationOptions = {
-        drawerLabel: 'Alerty',
-        drawerIcon: ({tintColor}) => (<Icon name={'notifications'} color={tintColor}/>),
+     static navigationOptions = {
+        drawerLabel: 'Strona główna',
+        drawerIcon: ({ tintColor }) => (<Icon name={'home'} color={tintColor}/>  ),
     };
-
-    render() {
+    render(){
         return (
             <View>
-                <DrawerIcon name={'Home'}/>
-                <View style={{alignItems: 'center'}}>
-                    <Text>Alerty</Text>
+                <DrawerIcon name={'Strona Główna'}/>
+                <View>
+
+                            <Card>
+                                <CardItem header>
+                                    <Text>NativeBase</Text>
+                                </CardItem>
+                                <CardItem>
+                                    <Body>
+                                    <Text>
+                                        //Your text here
+                                    </Text>
+                                    </Body>
+                                </CardItem>
+                                <CardItem footer>
+                                    <Text>GeekyAnts</Text>
+                                </CardItem>
+                            </Card>
+
                 </View>
             </View>
         )

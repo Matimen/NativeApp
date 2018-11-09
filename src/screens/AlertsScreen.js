@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {Table, TableWrapper, Row, Cell} from 'react-native-table-component';
+import { Table, Row } from 'react-native-table-component';
 import {Icon} from "react-native-elements";
 import {
-    View, Text, StyleSheet, TouchableOpacity, Button, ScrollView, ActivityIndicator
+    View, StyleSheet, ScrollView, ActivityIndicator
 } from 'react-native';
-import DrawerIcon from '../components/menu-icon/menu-icon';
-import { getData } from "../api/api";
 import Moment from 'moment';
+import DrawerIcon from '../components/menu-icon/menu-icon';
+import TableFilters from "../components/filters/tableFilters";
+import {getData} from "../api/api";
 
 export default class AlertsScreen extends Component {
     static navigationOptions = {
@@ -30,8 +31,12 @@ export default class AlertsScreen extends Component {
     }
     render() {
         return (
-            <View>
+
+            <View style={styles.container}>
                 <DrawerIcon name={'Alerty'}/>
+                <View style={styles.filters}>
+                    <TableFilters/>
+                </View>
                 <ScrollView horizontal={true}>
                     <View>
                         <Table borderStyle={{borderColor: '#a39f9e'}}>
@@ -70,9 +75,11 @@ export default class AlertsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    header: {backgroundColor: '#a5e1ff' },
-    text: { textAlign: 'center', fontWeight: '100' },
-    dataWrapper: { marginTop: -1 },
-    row: { backgroundColor: '#dbeafa'}
+    container: {flex: 1, backgroundColor: '#fff'},
+    header: { backgroundColor: '#537791'},
+    text: {textAlign: 'center', fontWeight: '100'},
+    dataWrapper: {marginTop: -1},
+    filters: {paddingHorizontal: 10},
+    row: {backgroundColor: '#E7E6E1'}
 });
 
