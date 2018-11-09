@@ -5,9 +5,9 @@ import {View, StyleSheet, Text, TouchableOpacity, ScrollView} from 'react-native
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import TableFilters from "../components/filters/tableFilters";
 
-export default class AlertsScreen extends Component {
+export default class StateofServicesScreen extends Component {
     static navigationOptions = {
-        drawerLabel: 'Alerty',
+        drawerLabel: 'Stany Usług IT',
         drawerIcon: ({tintColor}) => (<Icon name={'notifications'} color={tintColor}/>),
     };
 
@@ -34,7 +34,7 @@ export default class AlertsScreen extends Component {
         return (
 
             <View style={styles.container}>
-                <DrawerIcon name={'Alerty'}/>
+                <DrawerIcon name={'Stany Usług IT'}/>
                 <View style={styles.filters}>
                     <TableFilters/>
                 </View>

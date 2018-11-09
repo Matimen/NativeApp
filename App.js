@@ -1,31 +1,36 @@
 import React from 'react';
-import {Text, View, SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {Text, View, SafeAreaView, ScrollView, StatusBar, Button} from 'react-native';
 import {createDrawerNavigator, DrawerItems} from 'react-navigation';
-import {Header, Icon} from 'react-native-elements'
-import SettingsScreen from "./src/screens/SettingsScreen";
+
+import ServicesScreen from "./src/screens/SettingsScreen";
 import HomeScreen from "./src/screens/HomeScreen";
-import AlertsScreen from "./src/screens/AlertsScreen";
 import DrawerComponent from "./src/components/drawer/drawer";
+import AlertsScreen from "./src/screens/AlertsScreen";
+import StateofServicesScreen from "./src/screens/StateofServicesScreen";
+import ServicesofItScreen from "./src/screens/ServicesofItScreen";
+
 
 export default class App extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
         StatusBar.setHidden(true);
     }
     render() {
         return (
-                <Navigator />
+            <Navigator/>
         );
     }
 }
 
 const Navigator = createDrawerNavigator(
     {
-        Home: HomeScreen,
-        Usługi: SettingsScreen,
-        Alerty: AlertsScreen
+        'Strona Główna': HomeScreen,
+        Alerty: AlertsScreen,
+        'Stany Usług IT': StateofServicesScreen,
+        'Usługi IT': ServicesofItScreen
     },
     {
+        header: <Text>asd</Text>,
         contentComponent: DrawerComponent
-    }
+    },
 );
