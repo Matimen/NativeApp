@@ -4,7 +4,6 @@ import React from "react";
 
 const DrawerComponent = (props) => (
     <SafeAreaView style={{flex: 1}}>
-        {console.log(props)}
         <View style={{height: 100, backgroundColor: '#0072c6', alignItems: 'center', justifyContent: 'center', paddingTop: 15}}>
             <View>
                 <Image source={require('../../assets/asseco.png')}/>
