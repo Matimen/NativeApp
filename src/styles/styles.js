@@ -1,3 +1,7 @@
+import React, {Component} from 'react';
+import {
+    View, Text, StyleSheet, TouchableOpacity
+} from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -5,4 +9,5 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
 });
