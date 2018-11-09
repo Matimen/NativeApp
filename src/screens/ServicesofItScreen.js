@@ -22,12 +22,10 @@ export default class ServicesofItScreen extends Component {
 
     render() {
         return (
-
             <View style={styles.container}>
                 <DrawerIcon name={'Usługi IT'}/>
                 <Text>Usługi IT</Text>
             </View>
-
         )
     }
 }
