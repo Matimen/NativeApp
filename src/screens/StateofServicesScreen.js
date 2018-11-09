@@ -8,7 +8,7 @@ import TableFilters from "../components/filters/tableFilters";
 export default class StateofServicesScreen extends Component {
     static navigationOptions = {
         drawerLabel: 'Stany Usług IT',
-        drawerIcon: ({tintColor}) => (<Icon name={'notifications'} color={tintColor}/>),
+        drawerIcon: ({tintColor}) => (<Icon name={'router'} color={tintColor}/>),
     };
 
     constructor(props) {

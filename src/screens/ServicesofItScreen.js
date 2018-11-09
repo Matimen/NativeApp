@@ -8,7 +8,7 @@ import TableFilters from "../components/filters/tableFilters";
 export default class ServicesofItScreen extends Component {
     static navigationOptions = {
         drawerLabel: 'Usługi IT',
-        drawerIcon: ({tintColor}) => (<Icon name={'notifications'} color={tintColor}/>),
+        drawerIcon: ({tintColor}) => (<Icon name={'computer'} color={tintColor}/>),
     };
 
     constructor(props) {
@@ -21,46 +21,11 @@ export default class ServicesofItScreen extends Component {
     }
 
     render() {
-        const state = this.state;
-        const tableData = [];
-        for (let i = 0; i < 30; i += 1) {
-            const rowData = [];
-            for (let j = 0; j < 9; j += 1) {
-                rowData.push(`${i}${j}`);
-            }
-            tableData.push(rowData);
-        }
-
         return (
 
             <View style={styles.container}>
                 <DrawerIcon name={'Usługi IT'}/>
-                <View style={styles.filters}>
-                    <TableFilters/>
-                </View>
-                <ScrollView horizontal={true}>
-                    <View>
-                        <Table borderStyle={{borderColor: '#C1C0B9'}}>
-                            <Row data={state.tableHead} widthArr={state.widthArr} style={styles.header}
-                                 textStyle={styles.text}/>
-                        </Table>
-                        <ScrollView style={styles.dataWrapper}>
-                            <Table borderStyle={{borderColor: '#C1C0B9'}}>
-                                {
-                                    tableData.map((rowData, index) => (
-                                        <Row
-                                            key={index}
-                                            data={rowData}
-                                            widthArr={state.widthArr}
-                                            style={[styles.row, index % 2 && {backgroundColor: '#F7F6E7'}]}
-                                            textStyle={styles.text}
-                                        />
-                                    ))
-                                }
-                            </Table>
-                        </ScrollView>
-                    </View>
-                </ScrollView>
+                <Text>Usługi IT</Text>
             </View>
 
         )
