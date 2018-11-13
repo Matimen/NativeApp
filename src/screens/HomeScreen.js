@@ -37,8 +37,6 @@ export default class HomeScreen extends Component {
         let count = 0, warning;
         warning = this.state.alertsData.filter(item => item.AlertStatusId === 1);
         count = warning.length;
-        console.log(count);
-
     }
 
     render() {

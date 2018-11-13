@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Table, Row, TableWrapper, Cell} from 'react-native-table-component';
-import {Icon} from "react-native-elements";
+import {Card, Divider, Icon} from "react-native-elements";
 import {
     View, StyleSheet, ScrollView, ActivityIndicator, Text
 } from 'react-native';
 import Moment from 'moment';
+import _ from 'lodash';
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import TableFilters from "../components/filters/tableFilters";
 import {getData} from "../api/api";
@@ -19,8 +20,10 @@ export default class AlertsScreen extends Component {
         super(props);
         this.state = {
             alertsData: [],
-            tableHead: [<Text style={styles.text} onPress={()=>console.log('sortId')}>ID</Text>, 'ApiKey', 'Nazwa Klienta', 'Data od', 'Data do'],
-            widthArr: [50, 30, 130, 100, 100]
+            tableHead: [<Text style={styles.text}
+                              onPress={() => this.sortbyID('AlertId')}>ID</Text>, 'ApiKey', 'Nazwa Klienta', 'Data od', 'Data do'],
+            widthArr: [50, 30, 130, 100, 100],
+            sorted: ''
         }
     }
 
@@ -31,24 +34,40 @@ export default class AlertsScreen extends Component {
             });
         });
     }
-    sortbyID(){
+
+    sortbyID(column) {
         // LODASH
+        if (this.state.sorted !== 'desc') {
+            this.setState({
+                alertsData: _.orderBy(this.state.alertsData, column, 'desc'),
+                sorted: 'desc'
+            })
+        } else {
+            this.setState({
+                alertsData: _.orderBy(this.state.alertsData, column, 'asc'),
+                sorted: 'asc'
+            })
+        }
     }
 
     render() {
         return (
+
             <View>
                 <DrawerIcon name={'Strona Główna'}/>
-                <View>
-                    <TableFilters></TableFilters>
-                </View>
+                <Card>
+                    <TableFilters alerts={this.state.alertsData}/>
+                </Card>
+                <Divider style={{ backgroundColor: 'grey', margin: 5 }} />
                 <View>
                     <Table style={{borderColor: 'transparent', alignItems: 'center', justifyContent: 'center'}}>
-                        <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text} widthArr={this.state.widthArr}/>
+                        <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text}
+                             widthArr={this.state.widthArr}/>
                         {this.state.alertsData.length > 0 ?
 
-                                this.state.alertsData.map((rowData, index) => (
-                                <TableWrapper key={index} style={[styles.row, index%2 && {backgroundColor: '#e3eefe'}]}>
+                            this.state.alertsData.map((rowData, index) => (
+                                <TableWrapper key={index}
+                                              style={[styles.row, index % 2 && {backgroundColor: '#e3eefe'}]}>
                                     <Cell data={rowData.AlertId} textStyle={styles.text}
                                           width={this.state.widthArr[0]}/>
                                     <Cell data={rowData.ClientApiKeyId} textStyle={styles.text}
@@ -61,8 +80,9 @@ export default class AlertsScreen extends Component {
                                           textStyle={styles.text} width={this.state.widthArr[4]}/>
                                 </TableWrapper>
                             ))
-                        :
-                            <ActivityIndicator style={{alignItems: 'flex-start', marginBottom: 50, marginTop: 50}} size="large" color="#0000ff" />
+                            :
+                            <ActivityIndicator style={{alignItems: 'flex-start', marginBottom: 50, marginTop: 50}}
+                                               size="large" color="#0000ff"/>
                         }
                     </Table>
                 </View>

@@ -30,7 +30,6 @@ const Navigator = createDrawerNavigator(
         'Usługi IT': ServicesofItScreen
     },
     {
-        header: <Text>asd</Text>,
         contentComponent: DrawerComponent
     },
 );
