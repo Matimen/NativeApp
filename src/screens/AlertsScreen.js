@@ -21,6 +21,7 @@ export default class AlertsScreen extends Component {
         this.state = {
             idSorted: 'desc',
             alertsData: [],
+            filteredData: [],
             tableHead: [
                 <View><Text style={styles.text} onPress={()=>this.sortbyID('AlertId')}>ID</Text></View>,
                 'ApiKey',
@@ -52,8 +53,9 @@ export default class AlertsScreen extends Component {
         }
     }
     filterData(data) {
+        console.log(data);
         this.setState({
-            alertsData: data
+            filteredData: data
         })
     }
     render() {
@@ -66,8 +68,8 @@ export default class AlertsScreen extends Component {
                 <View>
                     <Table style={{borderColor: 'transparent', alignItems: 'center', justifyContent: 'center'}}>
                         <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text} widthArr={this.state.widthArr}/>
-                        {this.state.alertsData.length > 0 ?
-
+                        {   this.state.filteredData.length === 0 ?
+                            (this.state.alertsData.length > 0 ?
                                 this.state.alertsData.map((rowData, index) => (
                                 <TableWrapper key={index} style={[styles.row, index%2 && {backgroundColor: '#e3eefe'}]}>
                                     <Cell data={rowData.AlertId} textStyle={styles.text}
@@ -81,9 +83,21 @@ export default class AlertsScreen extends Component {
                                     <Cell data={Moment(rowData.StopDate).format('DD.MM.YYYY')}
                                           textStyle={styles.text} width={this.state.widthArr[4]}/>
                                 </TableWrapper>
-                            ))
-                        :
-                            <ActivityIndicator style={{alignItems: 'flex-start', marginBottom: 50, marginTop: 50}} size="large" color="#0000ff" />
+                            )) : <ActivityIndicator style={{alignItems: 'flex-start', marginBottom: 50, marginTop: 50}} size="large" color="#0000ff" />)
+                            :
+                            this.state.filteredData.map((rowData, index) => (
+                                <TableWrapper key={index} style={[styles.row, index%2 && {backgroundColor: '#e3eefe'}]}>
+                                    <Cell data={rowData.AlertId} textStyle={styles.text}
+                                          width={this.state.widthArr[0]}/>
+                                    <Cell data={rowData.ClientApiKeyId} textStyle={styles.text}
+                                          width={this.state.widthArr[1]}/>
+                                    <Cell data={rowData.ClientName} textStyle={styles.text}
+                                          width={this.state.widthArr[2]}/>
+                                    <Cell data={Moment(rowData.StartDate).format('DD.MM.YYYY')}
+                                          textStyle={styles.text} width={this.state.widthArr[3]}/>
+                                    <Cell data={Moment(rowData.StopDate).format('DD.MM.YYYY')}
+                                          textStyle={styles.text} width={this.state.widthArr[4]}/>
+                                </TableWrapper>))
                         }
                     </Table>
                 </View>
