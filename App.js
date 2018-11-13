@@ -8,6 +8,7 @@ import DrawerComponent from "./src/components/drawer/drawer";
 import AlertsScreen from "./src/screens/AlertsScreen";
 import StateofServicesScreen from "./src/screens/StateofServicesScreen";
 import ServicesofItScreen from "./src/screens/ServicesofItScreen";
+import UserScreen from "./src/screens/UserScreen";
 
 
 export default class App extends React.Component {
@@ -26,12 +27,12 @@ const Navigator = createDrawerNavigator(
     {
 
         'Strona Główna': HomeScreen,
-        Alerty: AlertsScreen,
+        'Alerty': AlertsScreen,
         'Stany Usług IT': StateofServicesScreen,
-        'Usługi IT': ServicesofItScreen
+        'Usługi IT': ServicesofItScreen,
+        'Panel użytkownika': UserScreen
     },
     {
-        header: <Text>asd</Text>,
         contentComponent: DrawerComponent
 
     },

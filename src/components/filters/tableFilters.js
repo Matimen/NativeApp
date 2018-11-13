@@ -1,37 +1,17 @@
 import {StyleSheet, Text, View} from "react-native";
 import React, {Component} from "react";
+import _ from 'lodash';
 import {getData} from "../../api/api";
 import {Container, Header, Content, Card, CardItem, Body, Button} from 'native-base';
 
 export default class TableFilters extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            alertsData: [],
-            count: '',
-        };
+    filter(type) {
+        let filteredData = this.props.alertsData.filter((item)=>{
+            return item['AlertStatusId'] === type
+        });
+        this.props.filter(filteredData);
     }
-    componentDidMount() {
-        getData().then(response => {
-            this.setState({
-                alertsData: response.data,
-            })
-        })
-            .then(() => {
-                this.createList();
-            })
-        ;
-    }
-    createList() {
-        let count = 0, warning, ok, info, minor, major, critical;
-        ok = this.state.alertsData.filter(item => item.AlertStatusId === 0).length;
-        info = this.state.alertsData.filter(item => item.AlertStatusId === 1).length;
-        warning = this.state.alertsData.filter(item => item.AlertStatusId === 2).length;
-        minor = this.state.alertsData.filter(item => item.AlertStatusId === 3).length;
-        major = this.state.alertsData.filter(item => item.AlertStatusId === 4).length;
-        critical = this.state.alertsData.filter(item => item.AlertStatusId === 5).length;
-        this.setState({ok, info, warning, minor, major, critical});
-    }
+
     render() {
         return (
             <View>
@@ -41,23 +21,27 @@ export default class TableFilters extends Component {
                     </CardItem>
                     <CardItem>
                         <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
-                        <Button success style={styles.btn}>
-                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 0).length}</Text>
+                        <Button success style={styles.btn} onPress={() => this.filter(0)}>
+                            <Text >
+                                {this.props.alertsData.filter(item => item.AlertStatusId === 0).length}
+                            </Text>
                         </Button>
-                        <Button info style={styles.btn}>
-                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 1).length}</Text>
+                        <Button info style={styles.btn} onPress={() => this.filter(1)}>
+                            <Text >
+                                {this.props.alertsData.filter(item => item.AlertStatusId === 1).length}
+                            </Text>
                         </Button>
-                        <Button warning style={styles.btn}>
-                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 2).length}</Text>
+                        <Button warning style={styles.btn} onPress={() => this.filter(2)}>
+                            <Text>{this.props.alertsData.filter(item => item.AlertStatusId === 2).length}</Text>
                         </Button>
-                        <Button warning style={styles.btn}>
-                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 3).length}</Text>
+                        <Button warning style={styles.btn} onPress={() => this.filter(3)}>
+                            <Text>{this.props.alertsData.filter(item => item.AlertStatusId === 3).length}</Text>
                         </Button>
-                        <Button danger style={styles.btn}>
-                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 4).length}</Text>
+                        <Button danger style={styles.btn} onPress={() => this.filter(4)}>
+                            <Text>{this.props.alertsData.filter(item => item.AlertStatusId === 4).length}</Text>
                         </Button>
-                        <Button danger style={styles.btn}>
-                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 5).length}</Text>
+                        <Button danger style={styles.btn} onPress={() => this.filter(5)}>
+                            <Text>{this.props.alertsData.filter(item => item.AlertStatusId === 5).length}</Text>
                         </Button>
                         </Body>
                     </CardItem>
