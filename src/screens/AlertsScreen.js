@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Table, Row, TableWrapper, Cell} from 'react-native-table-component';
-import {Icon} from "react-native-elements";
+import {Icon, Container} from "native-base";
 import {
     View, StyleSheet, ScrollView, ActivityIndicator, Text
 } from 'react-native';
 import Moment from 'moment';
+import _ from 'lodash';
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import TableFilters from "../components/filters/tableFilters";
 import {getData} from "../api/api";
@@ -18,8 +19,14 @@ export default class AlertsScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            idSorted: 'desc',
             alertsData: [],
-            tableHead: [<Text style={styles.text} onPress={()=>console.log('sortId')}>ID</Text>, 'ApiKey', 'Nazwa Klienta', 'Data od', 'Data do'],
+            tableHead: [
+                <View><Text style={styles.text} onPress={()=>this.sortbyID('AlertId')}>ID</Text></View>,
+                'ApiKey',
+                'Nazwa Klienta',
+                'Data od',
+                'Data do'],
             widthArr: [50, 30, 130, 100, 100]
         }
     }
@@ -31,16 +38,30 @@ export default class AlertsScreen extends Component {
             });
         });
     }
-    sortbyID(){
-        // LODASH
+    sortbyID(column){
+        if (this.state.idSorted === 'desc'){
+            this.setState({
+                alertsData: _.orderBy(this.state.alertsData, column, 'asc'),
+                idSorted: 'asc'
+            })
+        } else {
+            this.setState({
+                alertsData: _.orderBy(this.state.alertsData, column, 'desc'),
+                idSorted: 'desc'
+            })
+        }
     }
-
+    filterData(data) {
+        this.setState({
+            alertsData: data
+        })
+    }
     render() {
         return (
             <View>
                 <DrawerIcon name={'Alerty'}/>
                 <View>
-                    <TableFilters></TableFilters>
+                    <TableFilters alertsData={this.state.alertsData} filter={this.filterData.bind(this)}></TableFilters>
                 </View>
                 <View>
                     <Table style={{borderColor: 'transparent', alignItems: 'center', justifyContent: 'center'}}>

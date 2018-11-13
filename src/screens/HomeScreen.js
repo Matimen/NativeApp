@@ -8,11 +8,10 @@ import {Container, Header, Content, Card, CardItem, Body, Button} from 'native-b
 import {getData} from "../api/api";
 
 export default class HomeScreen extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             alertsData: [],
-            count: '',
         }
     }
 
@@ -27,20 +26,14 @@ export default class HomeScreen extends Component {
                 alertsData: response.data,
             })
         })
-            .then(() => {
-                this.createList();
-            })
-        ;
     }
-
-
 
     render() {
         return (
             <View>
                 <DrawerIcon name={'Strona Główna'}/>
                 <View>
-                   
+
                 </View>
             </View>
         )
