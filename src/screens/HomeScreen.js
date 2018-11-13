@@ -13,6 +13,7 @@ export default class HomeScreen extends Component {
         super();
         this.state = {
             alertsData: [],
+            count: '',
         }
     }
 
@@ -34,14 +35,18 @@ export default class HomeScreen extends Component {
     }
 
     createList() {
-        let count = 0, warning;
-        warning = this.state.alertsData.filter(item => item.AlertStatusId === 1);
-        count = warning.length;
-        console.log(count);
-
+        let count = 0, warning, ok, info, minor, major, critical;
+        ok = this.state.alertsData.filter(item => item.AlertStatusId === 0).length;
+        info = this.state.alertsData.filter(item => item.AlertStatusId === 1).length;
+        warning = this.state.alertsData.filter(item => item.AlertStatusId === 2).length;
+        minor = this.state.alertsData.filter(item => item.AlertStatusId === 3).length;
+        major = this.state.alertsData.filter(item => item.AlertStatusId === 4).length;
+        critical = this.state.alertsData.filter(item => item.AlertStatusId === 5).length;
+        this.setState({ok, info, warning, minor, major, critical});
     }
 
     render() {
+
         return (
             <View>
                 <DrawerIcon name={'Strona Główna'}/>
@@ -52,23 +57,25 @@ export default class HomeScreen extends Component {
                         </CardItem>
                         <CardItem>
                             <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
-                            <Button success style={styles.btn}>
-                                <Text>{this.state.count}</Text>
+                            <Button success style={styles.btn}  onPress={() =>
+                                navigate('Profile', { name: 'Jane' })
+                            }>
+                                <Text>{this.state.ok}</Text>
                             </Button>
                             <Button info style={styles.btn}>
-                                <Text>Click !</Text>
+                                <Text>{this.state.info}</Text>
                             </Button>
                             <Button warning style={styles.btn}>
-                                <Text>Click !</Text>
+                                <Text>{this.state.warning}</Text>
                             </Button>
                             <Button warning style={styles.btn}>
-                                <Text>Click !</Text>
+                                <Text>{this.state.minor}</Text>
                             </Button>
                             <Button danger style={styles.btn}>
-                                <Text>Click !</Text>
+                                <Text>{this.state.major}</Text>
                             </Button>
                             <Button danger style={styles.btn}>
-                                <Text>Click !</Text>
+                                <Text>{this.state.critical}</Text>
                             </Button>
                             </Body>
                         </CardItem>
@@ -81,6 +88,8 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
     btn: {
         paddingHorizontal: 5,
+        minWidth: 50,
+        justifyContent: 'center',
     }
 });
 
