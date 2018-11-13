@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Table, Row } from 'react-native-table-component';
+import React, {Component} from 'react';
+import {Table, Row, TableWrapper, Cell} from 'react-native-table-component';
 import {Icon} from "react-native-elements";
 import {
-    View, StyleSheet, ScrollView, ActivityIndicator
+    View, StyleSheet, ScrollView, ActivityIndicator, Text
 } from 'react-native';
 import Moment from 'moment';
 import DrawerIcon from '../components/menu-icon/menu-icon';
@@ -12,74 +12,68 @@ import {getData} from "../api/api";
 export default class AlertsScreen extends Component {
     static navigationOptions = {
         drawerLabel: 'Alerty',
-        drawerIcon: ({ tintColor }) => (<Icon name={'notifications'} color={tintColor}/>  ),
+        drawerIcon: ({tintColor}) => (<Icon name={'notifications'} color={tintColor}/>),
     };
+
     constructor(props) {
         super(props);
         this.state = {
             alertsData: [],
-            tableHead: ['ID', 'ApiKey', 'Nazwa Klienta', 'Źródło', 'Data od', 'Data do', 'Host', 'Klasa', 'Klasa obiektu'],
-            widthArr: [50, 50, 80, 100, 100, 100, 100, 100, 100]
+            tableHead: [<Text style={styles.text} onPress={()=>console.log('sortId')}>ID</Text>, 'ApiKey', 'Nazwa Klienta', 'Data od', 'Data do'],
+            widthArr: [50, 30, 130, 100, 100]
         }
     }
+
     componentDidMount() {
-        getData().then( response => {
+        getData().then(response => {
             this.setState({
                 alertsData: response.data,
             });
         });
     }
+    sortbyID(){
+        // LODASH
+    }
+
     render() {
         return (
-
-            <View style={styles.container}>
-                <DrawerIcon name={'Alerty'}/>
-                <View style={styles.filters}>
-                    <TableFilters/>
+            <View>
+                <DrawerIcon name={'Strona Główna'}/>
+                <View>
+                    <TableFilters></TableFilters>
                 </View>
-                <ScrollView horizontal={true}>
-                    <View>
-                        <Table borderStyle={{borderColor: '#a39f9e'}}>
-                            <Row data={this.state.tableHead} widthArr={this.state.widthArr} style={styles.header} textStyle={styles.text}/>
-                        </Table>
-                        <ScrollView style={styles.dataWrapper}>
-                            {
-                                this.state.alertsData.length > 1?
-                                    <Table>
-                                        {
-                                            this.state.alertsData.map((rowData, index) => (
-                                                <Row
-                                                    key={index}
-                                                    data={[rowData.AlertId, rowData.ClientApiKeyId, rowData.ClientName,
-                                                        rowData.Source,
-                                                        Moment(rowData.StartDate).format('YYYY-MM-DD'),
-                                                        Moment(rowData.StopDate).format('YYYY-MM-DD'),
-                                                        rowData.Host,
-                                                        rowData.Class,
-                                                        rowData.ObjectClass]}
-                                                    widthArr={this.state.widthArr}
-                                                    style={[styles.row, index%2 && {backgroundColor: '#e3eefe'}]}
-                                                    textStyle={styles.text}
-                                                />
-                                            ))
-                                        }
-                                    </Table>:
-                                    <ActivityIndicator style={{alignItems: 'flex-start', marginLeft: 185, marginBottom: 100, marginTop: 100}} size="large" color="#0000ff" />
-                            }
-                        </ScrollView>
-                    </View>
-                </ScrollView>
+                <View>
+                    <Table style={{borderColor: 'transparent', alignItems: 'center', justifyContent: 'center'}}>
+                        <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text} widthArr={this.state.widthArr}/>
+                        {this.state.alertsData.length > 0 ?
+
+                                this.state.alertsData.map((rowData, index) => (
+                                <TableWrapper key={index} style={[styles.row, index%2 && {backgroundColor: '#e3eefe'}]}>
+                                    <Cell data={rowData.AlertId} textStyle={styles.text}
+                                          width={this.state.widthArr[0]}/>
+                                    <Cell data={rowData.ClientApiKeyId} textStyle={styles.text}
+                                          width={this.state.widthArr[1]}/>
+                                    <Cell data={rowData.ClientName} textStyle={styles.text}
+                                          width={this.state.widthArr[2]}/>
+                                    <Cell data={Moment(rowData.StartDate).format('DD.MM.YYYY')}
+                                          textStyle={styles.text} width={this.state.widthArr[3]}/>
+                                    <Cell data={Moment(rowData.StopDate).format('DD.MM.YYYY')}
+                                          textStyle={styles.text} width={this.state.widthArr[4]}/>
+                                </TableWrapper>
+                            ))
+                        :
+                            <ActivityIndicator style={{alignItems: 'flex-start', marginBottom: 50, marginTop: 50}} size="large" color="#0000ff" />
+                        }
+                    </Table>
+                </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {flex: 1, backgroundColor: '#fff'},
-    header: { backgroundColor: '#537791'},
-    text: {textAlign: 'center', fontWeight: '100'},
-    dataWrapper: {marginTop: -1},
-    filters: {paddingHorizontal: 10},
-    row: {backgroundColor: '#E7E6E1'}
+    container: {flex: 1, padding: 5, paddingTop: 30, backgroundColor: '#fff'},
+    head: {height: 40, backgroundColor: '#808B97'},
+    text: {margin: 2, textAlign: 'center'},
+    row: {flexDirection: 'row', backgroundColor: '#E7E6E1'},
 });
-
