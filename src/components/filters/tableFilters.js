@@ -42,22 +42,22 @@ export default class TableFilters extends Component {
                     <CardItem>
                         <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
                         <Button success style={styles.btn}>
-                            <Text>{this.state.ok}</Text>
+                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 0).length}</Text>
                         </Button>
                         <Button info style={styles.btn}>
-                            <Text>{this.state.info}</Text>
+                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 1).length}</Text>
                         </Button>
                         <Button warning style={styles.btn}>
-                            <Text>{this.state.warning}</Text>
+                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 2).length}</Text>
                         </Button>
                         <Button warning style={styles.btn}>
-                            <Text>{this.state.minor}</Text>
+                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 3).length}</Text>
                         </Button>
                         <Button danger style={styles.btn}>
-                            <Text>{this.state.major}</Text>
+                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 4).length}</Text>
                         </Button>
                         <Button danger style={styles.btn}>
-                            <Text>{this.state.critical}</Text>
+                            <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 5).length}</Text>
                         </Button>
                         </Body>
                     </CardItem>

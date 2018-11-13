@@ -3,8 +3,7 @@ import {
     View, Text, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import DrawerIcon from '../components/menu-icon/menu-icon';
-import {Icon} from "react-native-elements";
-import {Container, Header, Content, Card, CardItem, Body, Button} from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body } from 'native-base';
 import {getData} from "../api/api";
 
 export default class HomeScreen extends Component {
@@ -26,11 +25,7 @@ export default class HomeScreen extends Component {
             this.setState({
                 alertsData: response.data,
             })
-        })
-            .then(() => {
-                this.createList();
-            })
-        ;
+        });
     }
 
 
@@ -40,17 +35,37 @@ export default class HomeScreen extends Component {
             <View>
                 <DrawerIcon name={'Strona Główna'}/>
                 <View>
-                   
+
+                        <Card style={{flex: 0}}>
+                            <CardItem>
+                                    <Body>
+                                    <Text>ESIM - Event and Service Impact Manager</Text>
+                                    </Body>
+
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                <Text>
+                                    Your text here
+                                </Text>
+                                </Body>
+                            </CardItem>
+                            <CardItem>
+                                <Left>
+                                    <Button transparent textStyle={{color: '#87838B'}}>
+                                        <Icon name="logo-github" />
+                                        <Text>1,926 stars</Text>
+                                    </Button>
+                                </Left>
+                            </CardItem>
+                        </Card>
+
                 </View>
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
-    btn: {
-        paddingHorizontal: 5,
-        minWidth: 50,
-        justifyContent: 'center',
-    }
+
 });
 
