@@ -1,91 +1,75 @@
-import {Form, Picker} from "native-base";
-import {Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import React, {Component} from "react";
+import {getData} from "../../api/api";
+import {Container, Header, Content, Card, CardItem, Body, Button} from 'native-base';
 
 export default class TableFilters extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "key0",
-            selected2: "key7",
-            selected3: "key14"
+            alertsData: [],
+            count: '',
         };
     }
-    onValueChange(value: string) {
-        this.setState({
-            selected: value
-
-        });
+    componentDidMount() {
+        getData().then(response => {
+            this.setState({
+                alertsData: response.data,
+            })
+        })
+            .then(() => {
+                this.createList();
+            })
+        ;
     }
-    onValueChange2(value2: string) {
-        this.setState({
-            selected2: value2
-        });
-    }
-    onValueChange3(value3: string) {
-        this.setState({
-            selected3: value3
-        });
+    createList() {
+        let count = 0, warning, ok, info, minor, major, critical;
+        ok = this.state.alertsData.filter(item => item.AlertStatusId === 0).length;
+        info = this.state.alertsData.filter(item => item.AlertStatusId === 1).length;
+        warning = this.state.alertsData.filter(item => item.AlertStatusId === 2).length;
+        minor = this.state.alertsData.filter(item => item.AlertStatusId === 3).length;
+        major = this.state.alertsData.filter(item => item.AlertStatusId === 4).length;
+        critical = this.state.alertsData.filter(item => item.AlertStatusId === 5).length;
+        this.setState({ok, info, warning, minor, major, critical});
     }
     render() {
         return (
             <View>
-                <Text>Filtry</Text>
-                <Form>
-                    <Text>Alerty NOT CLOSED</Text>
-                    <Picker
-                        note
-                        mode="dropdown"
-                        style={{width: 150}}
-                        selectedValue={this.state.selected}
-                        onValueChange={this.onValueChange.bind(this)}
-                    >
-                        <Picker.Item label="Empty" value="key0"/>
-                        <Picker.Item label="Ok" value="key1"/>
-                        <Picker.Item label="Info" value="key2"/>
-                        <Picker.Item label="Warning" value="key3"/>
-                        <Picker.Item label="Minor" value="key4"/>
-                        <Picker.Item label="Major" value="key5"/>
-                        <Picker.Item label="Critical" value="key6"/>
-                    </Picker>
-                </Form>
-                <Form>
-                    <Text>Alerty NOT CLOSED klasa Icinga2</Text>
-                    <Picker
-                        note
-                        mode="dropdown"
-                        style={{width: 150}}
-                        selectedValue={this.state.selected2}
-                        onValueChange={this.onValueChange2.bind(this)}
-                    >
-                        <Picker.Item label="Empty" value="key7"/>
-                        <Picker.Item label="Ok" value="key8"/>
-                        <Picker.Item label="Info" value="key9"/>
-                        <Picker.Item label="Warning" value="key10"/>
-                        <Picker.Item label="Minor" value="key11"/>
-                        <Picker.Item label="Major" value="key12"/>
-                        <Picker.Item label="Critical" value="key13"/>
-                    </Picker>
-                </Form>
-                <Form>
-                    <Text>Alerty NOT CLOSED klasa ESIM</Text>
-                    <Picker
-                        note
-                        mode="dropdown"
-                        style={{width: 150}}
-                        selectedValue={this.state.selected3}
-                        onValueChange={this.onValueChange3.bind(this)}
-                    >
-                        <Picker.Item label="Empty" value="key14"/>
-                        <Picker.Item label="Ok" value="key15"/>
-                        <Picker.Item label="Info" value="key16"/>
-                        <Picker.Item label="Warning" value="key17"/>
-                        <Picker.Item label="Minor" value="key18"/>
-                        <Picker.Item label="Major" value="key19"/>
-                        <Picker.Item label="Critical" value="key20"/>
-                    </Picker>
-                </Form>
+                <Card>
+                    <CardItem header>
+                        <Text>ESIM - Event and Service Impact Manager</Text>
+                    </CardItem>
+                    <CardItem>
+                        <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
+                        <Button success style={styles.btn}>
+                            <Text>{this.state.ok}</Text>
+                        </Button>
+                        <Button info style={styles.btn}>
+                            <Text>{this.state.info}</Text>
+                        </Button>
+                        <Button warning style={styles.btn}>
+                            <Text>{this.state.warning}</Text>
+                        </Button>
+                        <Button warning style={styles.btn}>
+                            <Text>{this.state.minor}</Text>
+                        </Button>
+                        <Button danger style={styles.btn}>
+                            <Text>{this.state.major}</Text>
+                        </Button>
+                        <Button danger style={styles.btn}>
+                            <Text>{this.state.critical}</Text>
+                        </Button>
+                        </Body>
+                    </CardItem>
+                </Card>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    btn: {
+        paddingHorizontal: 5,
+        minWidth: 50,
+        justifyContent: 'center',
+    }
+});

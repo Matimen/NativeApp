@@ -38,7 +38,7 @@ export default class AlertsScreen extends Component {
     render() {
         return (
             <View>
-                <DrawerIcon name={'Strona Główna'}/>
+                <DrawerIcon name={'Alerty'}/>
                 <View>
                     <TableFilters></TableFilters>
                 </View>
