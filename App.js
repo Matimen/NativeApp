@@ -25,6 +25,7 @@ export default class App extends React.Component {
 
 const Navigator = createDrawerNavigator(
     {
+
         'Strona Główna': HomeScreen,
         'Alerty': AlertsScreen,
         'Stany Usług IT': StateofServicesScreen,
@@ -33,5 +34,6 @@ const Navigator = createDrawerNavigator(
     },
     {
         contentComponent: DrawerComponent
+
     },
 );
