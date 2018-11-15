@@ -22,6 +22,7 @@ export default class CardAlertsScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
             screenHeight: 0,
             idSorted: 'desc',
             alertsData: [],
@@ -40,6 +41,7 @@ export default class CardAlertsScreen extends Component {
         getData().then(response => {
             this.setState({
                 alertsData: response.data,
+                loading: false
             });
         });
     }
@@ -59,13 +61,17 @@ export default class CardAlertsScreen extends Component {
     }
 
     filterData(data) {
-        console.log(data);
         this.setState({
-            filteredData: data
-        })
+            loading: true
+        });
+        setTimeout(()=>{
+            this.setState({
+                loading: false,
+                filteredData: data
+            })
+        },1500);
     }
     onContentSizeChange = (contentWidth, contentHeight) => {
-        console.log(contentHeight)
         this.setState({
             screenHeight: contentHeight
         })
@@ -77,6 +83,9 @@ export default class CardAlertsScreen extends Component {
                 onContentSizeChange={this.onContentSizeChange}
                 scrollEnabled={scrollEnabled}>
                 <DrawerIcon name={'Alerty'}/>
+                <View style={{alignItems: 'flex-end', marginRight: 15}}>
+                    <Icon type="FontAwesome" style={{color: '#0072c6'}} name="table" onPress={()=> this.props.navigation.navigate('Tabela Alerty')}/>
+                </View>
                 <View>
                     <TableFilters alertsData={this.state.alertsData} filter={this.filterData.bind(this)}/>
                 </View>

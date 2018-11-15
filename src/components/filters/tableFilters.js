@@ -2,9 +2,17 @@ import {StyleSheet, Text, View} from "react-native";
 import React, {Component} from "react";
 import _ from 'lodash';
 import {getData} from "../../api/api";
-import {Container, Header, Content, Card, CardItem, Body, Button} from 'native-base';
+import {Container, Header, Content, Card, CardItem, Body, Button, Icon} from 'native-base';
 
 export default class TableFilters extends Component {
+    static navigationOptions = {
+        drawerLabel: () => null
+    };
+
+    constructor(props) {
+        super(props);
+    }
+
     filter(type) {
         let filteredData = this.props.alertsData.filter((item)=>{
             return item['AlertStatusId'] === type

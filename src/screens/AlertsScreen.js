@@ -12,8 +12,7 @@ import {getData} from "../api/api";
 
 export default class AlertsScreen extends Component {
     static navigationOptions = {
-        drawerLabel: 'Alerty',
-        drawerIcon: ({tintColor}) => (<Icon name={'notifications'} color={tintColor}/>),
+        drawerLabel: () => null
     };
 
     constructor(props) {
@@ -62,6 +61,9 @@ export default class AlertsScreen extends Component {
         return (
             <View>
                 <DrawerIcon name={'Alerty'}/>
+                <View style={{alignItems: 'flex-start', marginLeft: 15}}>
+                    <Icon type="FontAwesome" style={{color: '#0072c6'}} name="id-card" onPress={()=> this.props.navigation.navigate('Alerty')}/>
+                </View>
                 <View>
                     <TableFilters alertsData={this.state.alertsData} filter={this.filterData.bind(this)}></TableFilters>
                 </View>
