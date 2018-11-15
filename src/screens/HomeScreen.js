@@ -4,8 +4,9 @@ import {
 } from 'react-native';
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import {Icon} from "react-native-elements";
-import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body } from 'native-base';
+import {Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body} from 'native-base';
 import {getData} from "../api/api";
+import TableFilters from "../components/filters/tableFilters";
 
 export default class HomeScreen extends Component {
     constructor() {
@@ -26,10 +27,15 @@ export default class HomeScreen extends Component {
             this.setState({
                 alertsData: response.data,
             })
-        });
+        })
+            .then(() => {
+                this.createList();
+            });
     }
 
+    createList() {
 
+    }
 
     render() {
         return (
@@ -38,27 +44,112 @@ export default class HomeScreen extends Component {
                 <View style={{paddingHorizontal: 5}}>
                     <Card style={{flex: 0}}>
                         <CardItem>
-
-                                <Body>
-                                <Text>NativeBase</Text>
-                                <Text note>April 15, 2016</Text>
-                                </Body>
-                           
+                            <Body>
+                            <Text>ESIM - Event and Service Impact Manager</Text>
+                            </Body>
                         </CardItem>
                         <CardItem>
-                            <Body>
-                            <Text>
-                                //Your text here
-                            </Text>
+                            <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
+                            <Button success style={styles.btn} onPress={() =>
+                                navigate('Profile', {name: 'Jane'})
+                            }>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 0).length}</Text>
+                            </Button>
+                            <Button info style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 1).length}</Text>
+                            </Button>
+                            <Button warning style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 2).length}</Text>
+                            </Button>
+                            <Button warning style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 3).length}</Text>
+                            </Button>
+                            <Button danger style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 4).length}</Text>
+                            </Button>
+                            <Button danger style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 5).length}</Text>
+                            </Button>
                             </Body>
                         </CardItem>
                         <CardItem>
                             <Left>
-                                <Button transparent textStyle={{color: '#87838B'}}>
-                                    <Text>1,926 stars</Text>
-                                </Button>
+                                <Text>Twojej uwagi wymaga {this.state.alertsData.filter(item => item.AlertStatusId).length} spraw</Text>
                             </Left>
                         </CardItem>
+                    </Card>
+                    <Card style={{flex: 0}}>
+                        <CardItem>
+                            <Body>
+                            <Text>IMS - Icinga2 Monitoring Servers</Text>
+                            </Body>
+                        </CardItem>
+                        <CardItem>
+                            <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
+                            <Button success style={styles.btn} onPress={() =>
+                                navigate('Profile', {name: 'Jane'})
+                            }>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 0).length}</Text>
+                            </Button>
+                            <Button info style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 1).length}</Text>
+                            </Button>
+                            <Button warning style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 2).length}</Text>
+                            </Button>
+                            <Button warning style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 3).length}</Text>
+                            </Button>
+                            <Button danger style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 4).length}</Text>
+                            </Button>
+                            <Button danger style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 5).length}</Text>
+                            </Button>
+                            </Body>
+                        </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Text>Twojej uwagi wymaga {this.state.alertsData.filter(item => item.AlertStatusId).length} spraw</Text>
+                            </Left>
+                        </CardItem>
+                    </Card>
+                    <Card style={{flex: 0}}>
+                        <CardItem>
+                            <Body>
+                            <Text>STM - Synthetic Transaction Monitoring</Text>
+                            </Body>
+                        </CardItem>
+                        <CardItem>
+                            <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
+                            <Button success style={styles.btn} onPress={() =>
+                                navigate('Profile', {name: 'Jane'})
+                            }>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 0).length}</Text>
+                            </Button>
+                            <Button info style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 1).length}</Text>
+                            </Button>
+                            <Button warning style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 2).length}</Text>
+                            </Button>
+                            <Button warning style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 3).length}</Text>
+                            </Button>
+                            <Button danger style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 4).length}</Text>
+                            </Button>
+                            <Button danger style={styles.btn}>
+                                <Text>{this.state.alertsData.filter(item => item.AlertStatusId === 5).length}</Text>
+                            </Button>
+                            </Body>
+                        </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Text>Twojej uwagi wymaga {this.state.alertsData.filter(item => item.AlertStatusId).length} spraw</Text>
+                            </Left>
+                        </CardItem>
+
                     </Card>
                 </View>
             </View>

@@ -36,7 +36,7 @@ export default class StateofServicesScreen extends Component {
             <View style={styles.container}>
                 <DrawerIcon name={'Stany Usług IT'}/>
                 <View style={styles.filters}>
-                    <TableFilters/>
+
                 </View>
                 <ScrollView horizontal={true}>
                     <View>
