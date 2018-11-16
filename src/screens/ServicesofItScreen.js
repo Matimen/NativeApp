@@ -20,7 +20,7 @@ export default class AlertsScreen extends Component {
                 <View>
                     <Card title={'Komponent modeli Usług IT'}>
                         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <Button success style={styles.btn} onPress={()=>this.props.navigation.navigate('Szczegóły usług IT')}>
+                            <Button success style={styles.btn} onPress={()=>this.props.navigation.navigate('Usługi IT - drzewko')}>
                                 <Text>
                                     OK
                                 </Text>

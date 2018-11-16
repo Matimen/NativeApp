@@ -13,6 +13,7 @@ import CardAlertsScreen from "./src/screens/CardAlertsScreen";
 import TableFilters from "./src/components/filters/tableFilters";
 import ServicesDetails from "./src/screens/ServicesDetails";
 
+import TreeScreen from "./src/screens/TreeScreen";
 
 export default class App extends React.Component {
 
@@ -28,7 +29,7 @@ export default class App extends React.Component {
 
 const Navigator = createDrawerNavigator(
     {
-
+        'Usługi IT - drzewko' : TreeScreen,
         'Strona Główna': HomeScreen,
         'Alerty': CardAlertsScreen,
         'Stany Usług IT': StateofServicesScreen,
