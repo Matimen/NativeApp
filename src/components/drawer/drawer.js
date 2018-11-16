@@ -28,25 +28,25 @@ const DrawerComponent = (props) => (
             </DrawerItems>
         </ScrollView>
 
-        <ScrollView style={{marginTop: 20}}>
+        <ScrollView style={{paddingTop: 200}}>
             <View>
                 <Left>
                     <Avatar
                         small
                         rounded
-                        title="JK"
+                        source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg"}}
                         onPress={() => props.navigation.navigate('Panel użytkownika')}
                         activeOpacity={0.7}
                     />
                 </Left>
                 <Right>
-                    <Text onPress={() => props.navigation.navigate('Panel użytkownika')}>Panel Użytkownika</Text>
+                    <Text style={{fontSize: 15}} onPress={() => props.navigation.navigate('Panel użytkownika')}>Panel Użytkownika</Text>
                 </Right>
             </View>
             <Divider style={{backgroundColor: '#0072c6', margin: 10}}/>
             <View style={{marginTop: 5}}>
                 <Left>
-                    <Text>Wyloguj</Text>
+                    <Text style={{fontSize: 15}}>Wyloguj</Text>
                 </Left>
             </View>
         </ScrollView>
