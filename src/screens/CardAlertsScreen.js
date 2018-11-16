@@ -10,6 +10,7 @@ import DrawerIcon from '../components/menu-icon/menu-icon';
 import TableFilters from "../components/filters/tableFilters";
 import {getData} from "../api/api";
 import {Card, ListItem} from "react-native-elements";
+import {AlertsCard} from "../components/alerts-cards/alerts-card";
 
 const {height} = Dimensions.get('window');
 
@@ -69,7 +70,7 @@ export default class CardAlertsScreen extends Component {
                 loading: false,
                 filteredData: data
             })
-        },1500);
+        },1000);
     }
     onContentSizeChange = (contentWidth, contentHeight) => {
         this.setState({
@@ -89,60 +90,17 @@ export default class CardAlertsScreen extends Component {
                 <View>
                     <TableFilters alertsData={this.state.alertsData} filter={this.filterData.bind(this)}/>
                 </View>
-                <View
-                    >
+                <View>
                     <View>
-                    {this.state.filteredData.length === 0 ?
+                    {
+                        !this.state.loading ?
                         (
-                            this.state.alertsData.length > 0 ?
-                                this.state.alertsData.map((rowData, index) => (
-                                    <Card
-                                        key={index}
-                                        title={rowData.ClientName + ' ' + 'ID: ' + rowData.AlertId}>
-                                        <Text style={{marginBottom: 10}}>
-                                            ID: {rowData.AlertId}
-                                        </Text>
-                                        <Text style={{marginBottom: 10}}>
-                                            Nazwa klienta: {rowData.ClientName}
-                                        </Text>
-                                        <Text style={{marginBottom: 10}}>
-                                            Źródło: {rowData.Source}
-                                        </Text>
-                                        <Text style={{marginBottom: 10}}>
-                                            Data od: {Moment(rowData.StartDate).format('DD.MM.YYYY')}
-                                        </Text>
-                                        <Text style={{marginBottom: 10}}>
-                                            Data do: {Moment(rowData.StopDate).format('DD.MM.YYYY')}
-                                        </Text>
-                                    </Card>
-                                )) :
-                                <ActivityIndicator style={{alignItems: 'center', marginBottom: 50, marginTop: 50}}
-                                                   size="large" color="#0000ff"/>
+                            this.state.filteredData.length > 0 ?
+                                this.state.filteredData.map((rowData, index) => <AlertsCard key={index} rowData={rowData} index={rowData.AlertId}/>)
+                                :
+                                this.state.alertsData.map((rowData, index) => <AlertsCard key={index} rowData={rowData} index={rowData.AlertId}/>)
                         )
-                        :
-                        (
-                            this.state.filteredData.map((rowData, index) => (
-                                <Card
-                                    key={index}
-                                    title={rowData.ClientName + ' ' + 'ID: ' + rowData.AlertId}>
-                                    <Text style={{marginBottom: 10}}>
-                                        ID: {rowData.AlertId}
-                                    </Text>
-                                    <Text style={{marginBottom: 10}}>
-                                        Nazwa klienta: {rowData.ClientName}
-                                    </Text>
-                                    <Text style={{marginBottom: 10}}>
-                                        Źródło: {rowData.Source}
-                                    </Text>
-                                    <Text style={{marginBottom: 10}}>
-                                        Data od: {Moment(rowData.StartDate).format('DD.MM.YYYY')}
-                                    </Text>
-                                    <Text style={{marginBottom: 10}}>
-                                        Data do: {Moment(rowData.StopDate).format('DD.MM.YYYY')}
-                                    </Text>
-                                </Card>
-                            ))
-                        )
+                        : <ActivityIndicator style={{alignItems: 'center', marginBottom: 50, marginTop: 50}} size="large" color="#0000ff"/>
                     }
                     </View>
                 </View>
