@@ -11,7 +11,7 @@ import ServicesofItScreen from "./src/screens/ServicesofItScreen";
 import UserScreen from "./src/screens/UserScreen";
 import CardAlertsScreen from "./src/screens/CardAlertsScreen";
 import TableFilters from "./src/components/filters/tableFilters";
-
+import TreeScreen from "./src/screens/TreeScreen";
 
 export default class App extends React.Component {
 
@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
 const Navigator = createDrawerNavigator(
     {
-
+        'Tree' : TreeScreen,
         'Strona Główna': HomeScreen,
         'Alerty': CardAlertsScreen,
         'Stany Usług IT': StateofServicesScreen,
