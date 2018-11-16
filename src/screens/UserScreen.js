@@ -30,7 +30,7 @@ export default class UserScreen extends Component {
                     <Avatar
                         medium
                         rounded
-                        source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg"}}
+                        source={{uri: "https://st3.depositphotos.com/3577609/15141/v/1600/depositphotos_151412442-stock-illustration-avatar-men-design.jpg"}}
                         onPress={() => console.log("Works!")}
                         activeOpacity={0.7}
                     />

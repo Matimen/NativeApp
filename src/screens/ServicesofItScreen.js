@@ -19,7 +19,38 @@ export default class AlertsScreen extends Component {
                 <DrawerIcon name={'Usługi IT'}/>
                 <View>
                     <Card title={'Komponent modeli Usług IT'}>
-                        <MocksButtons></MocksButtons>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Button success style={styles.btn} onPress={()=>this.props.navigation.navigate('Szczegóły usług IT')}>
+                                <Text>
+                                    OK
+                                </Text>
+                            </Button>
+                            <Button info style={styles.btn} >
+                                <Text>
+                                    Info
+                                </Text>
+                            </Button>
+                            <Button warning style={styles.btn} >
+                                <Text>
+                                    Warning
+                                </Text>
+                            </Button>
+                            <Button warning style={styles.btn}>
+                                <Text>
+                                    Minor
+                                </Text>
+                            </Button>
+                            <Button danger style={styles.btn} >
+                                <Text>
+                                    Major
+                                </Text>
+                            </Button>
+                            <Button danger style={styles.btn} >
+                                <Text>
+                                    Critical
+                                </Text>
+                            </Button>
+                        </View>
                     </Card>
                 </View>
                 <Divider style={{backgroundColor: '#0072c6', margin: 15, marginBottom: 0}}/>
@@ -40,4 +71,10 @@ export default class AlertsScreen extends Component {
         )
     }
 }
-
+const styles = StyleSheet.create({
+    btn: {
+        paddingHorizontal: 5,
+        minWidth: 50,
+        justifyContent: 'center',
+    }
+});

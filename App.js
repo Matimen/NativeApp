@@ -11,6 +11,7 @@ import ServicesofItScreen from "./src/screens/ServicesofItScreen";
 import UserScreen from "./src/screens/UserScreen";
 import CardAlertsScreen from "./src/screens/CardAlertsScreen";
 import TableFilters from "./src/components/filters/tableFilters";
+import ServicesDetails from "./src/screens/ServicesDetails";
 
 
 export default class App extends React.Component {
@@ -34,7 +35,8 @@ const Navigator = createDrawerNavigator(
         'Usługi IT': ServicesofItScreen,
         'Panel użytkownika': UserScreen,
         'Tabela Alerty': AlertsScreen,
-        'Filters': TableFilters
+        'Filters': TableFilters,
+        'Szczegóły usług IT': ServicesDetails
     },
     {
         contentComponent: DrawerComponent
