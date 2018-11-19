@@ -29,7 +29,7 @@ export default class App extends React.Component {
 
 const Navigator = createDrawerNavigator(
     {
-        'Usługi IT - drzewko' : TreeScreen,
+
         'Strona Główna': HomeScreen,
         'Alerty': CardAlertsScreen,
         'Stany Usług IT': StateofServicesScreen,
@@ -37,7 +37,8 @@ const Navigator = createDrawerNavigator(
         'Panel użytkownika': UserScreen,
         'Tabela Alerty': AlertsScreen,
         'Filters': TableFilters,
-        'Szczegóły usług IT': ServicesDetails
+        'Szczegóły usług IT': ServicesDetails,
+        'Usługi IT - drzewko':TreeScreen
     },
     {
         contentComponent: DrawerComponent
