@@ -61,18 +61,20 @@ export default class TreeScreen extends Component {
                     <DrawerIcon name={'Usługi IT - drzewko'}/>
                     <Card>
                     <TreeView
+                        collapsedItemHeight={55}
                         ref={ref => this.treeView = ref}
                         data={this.state.data}
                         onItemPress={console.log('')}
                         renderItem={(item, level) => (
                             <View>
-                                <Text style={{marginLeft: 25 * level, fontSize: 20, marginTop: 0}}>
+                                <Text style={{marginLeft: 25 * level, fontSize: 22}}>
                                     {
                                         item.collapsed !== null ?
-                                            <Text >{item.collapsed ? <Icon name={'arrow-dropright'} style={{margin: 20}} ></Icon> : <Icon style={{margin: 20}} name={'arrow-dropdown'}></Icon>  }</Text> :
-                                            <Text > - </Text>
+                                            item.collapsed ? <Icon name={'arrow-dropright'}></Icon> : <Icon name={'arrow-dropdown'}></Icon>
+                                            :
+                                            <Text> - </Text>
                                     }
-                                    <Text onPress={()=>this.props.navigation.navigate('Szczegóły usług IT')}>{item.name}</Text>
+                                    <Text style={{paddingLeft: 10}} onPress={()=>this.props.navigation.navigate('Szczegóły usług IT')}>{item.name}</Text>
                                 </Text>
                             </View>
                         )}

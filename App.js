@@ -14,6 +14,7 @@ import TableFilters from "./src/components/filters/tableFilters";
 import ServicesDetails from "./src/screens/ServicesDetails";
 
 import TreeScreen from "./src/screens/TreeScreen";
+import LoginScreen from "./src/screens/LoginScreen";
 
 export default class App extends React.Component {
 
@@ -29,6 +30,7 @@ export default class App extends React.Component {
 
 const Navigator = createDrawerNavigator(
     {
+        'Login': LoginScreen,
         'Usługi IT - drzewko' : TreeScreen,
         'Strona Główna': HomeScreen,
         'Alerty': CardAlertsScreen,
