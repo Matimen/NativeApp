@@ -32,6 +32,7 @@ export default class ServicesDetails extends Component {
                     <DrawerIcon name={'Szczegóły usług IT'}/>
                 </View>
                 <Container>
+
                     <Tabs style={{margin: 10}}>
                         <Tab heading="Informacje" tabStyle={{backgroundColor: '#0072c6'}}
                              activeTabStyle={{backgroundColor: '#016ac6'}}>

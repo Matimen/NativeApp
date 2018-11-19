@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import {Icon} from "react-native-elements";
-import {Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body} from 'native-base';
+import {Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, SwipeRow} from 'native-base';
 import {getData} from "../api/api";
 import TableFilters from "../components/filters/tableFilters";
 
