@@ -15,7 +15,7 @@ const cards = [
 export default class StateofServicesScreen extends Component {
     static navigationOptions = {
         drawerLabel: 'Stany Usług IT',
-        drawerIcon: ({tintColor}) => (<Icon name={'router'} color={tintColor}/>),
+        drawerIcon: ({tintColor}) => (<Icon name={'ac-unit'} color={tintColor}/>),
     };
 
     constructor(props) {
