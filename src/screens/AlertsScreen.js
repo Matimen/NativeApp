@@ -61,7 +61,7 @@ export default class AlertsScreen extends Component {
         return (
             <View>
                 <DrawerIcon name={'Alerty'}/>
-                <View style={{alignItems: 'flex-start', marginLeft: 15}}>
+                <View style={{alignItems: 'flex-start', marginLeft: 15, marginTop: 5}}>
                     <Icon type="FontAwesome" style={{color: '#0072c6'}} name="id-card" onPress={()=> this.props.navigation.navigate('Alerty')}/>
                 </View>
                 <View>

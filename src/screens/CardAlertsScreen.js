@@ -84,7 +84,7 @@ export default class CardAlertsScreen extends Component {
                 onContentSizeChange={this.onContentSizeChange}
                 scrollEnabled={scrollEnabled}>
                 <DrawerIcon name={'Alerty'}/>
-                <View style={{alignItems: 'flex-end', marginRight: 15}}>
+                <View style={{alignItems: 'flex-end', marginRight: 15, marginTop: 5}}>
                     <Icon type="FontAwesome" style={{color: '#0072c6'}} name="table" onPress={()=> this.props.navigation.navigate('Tabela Alerty')}/>
                 </View>
                 <View>
