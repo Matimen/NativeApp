@@ -1,21 +1,14 @@
 import React, {Component} from 'react';
-import {DeckSwiper, Card, CardItem, Left, Body} from 'native-base';
+import {DeckSwiper,  CardItem, Icon} from 'native-base';
 import {StyleSheet, Text, View} from 'react-native';
 import DrawerIcon from '../components/menu-icon/menu-icon';
-import {Icon} from "react-native-elements";
+import {Card} from "react-native-elements";
 import {getData} from "../api/api";
-
-const cards = [
-    {
-        text: 'Card One',
-        name: 'One',
-    },
-];
 
 export default class StateofServicesScreen extends Component {
     static navigationOptions = {
         drawerLabel: 'Stany Usług IT',
-        drawerIcon: ({tintColor}) => (<Icon name={'ac-unit'} color={tintColor}/>),
+        drawerIcon: ({tintColor}) => (<Icon name={'paper'} color={tintColor}/>),
     };
 
     constructor(props) {
@@ -42,29 +35,35 @@ export default class StateofServicesScreen extends Component {
 
             <View style={styles.container}>
                 <DrawerIcon name={'Stany Usług IT'}/>
-                <View style={{paddingHorizontal: 5,}}>
-                    <DeckSwiper
-                        dataSource={this.state.alertsData}
-                        renderItem={(item) =>
-                            <Card style={{height: 300,}}>
-                                <CardItem header bordered style={item.AlertStatusId === 1 ? styles.danger : styles.white}>
-                                    <Text style={item.AlertStatusId === 1 ? styles.danger : styles.white}>
-                                        {item.ClientName}
+                <View>
+                    <Card style={{justifyContent: 'center', alignItems: 'center', marginBottom: 14}}>
+                        <Text style={{color: 'grey'}}>Przesuń w lewo lub prawo, aby zmienić kartę. </Text>
+                    </Card>
+                </View>
+                <View>
+                        <DeckSwiper
+                            dataSource={this.state.alertsData}
+                            renderItem={(item) =>
+                                <Card style={{height: 300,}}>
+                                    <CardItem header bordered
+                                              style={item.AlertStatusId === 1 ? styles.danger : styles.green}>
+                                        <Text style={item.AlertStatusId === 1 ? styles.danger : styles.green}>
+                                            {item.ClientName}
                                         </Text>
-                                </CardItem>
-                                <CardItem bordered>
-                                    <Text>Status: {item.AlertStatusId}</Text>
-                                </CardItem>
-                                <CardItem>
+                                    </CardItem>
+                                    <CardItem bordered>
+                                        <Text>Status: {item.AlertStatusId}</Text>
+                                    </CardItem>
+                                    <CardItem>
 
-                                    <Text>Treść: {"\n"}{item.Msg}</Text>
-                                </CardItem>
-                                <CardItem>
-                                    <Text> </Text>
-                                </CardItem>
-                            </Card>
-                        }
-                    />
+                                        <Text>Treść: {"\n"}{item.Msg}</Text>
+                                    </CardItem>
+                                    <CardItem>
+                                        <Text> </Text>
+                                    </CardItem>
+                                </Card>
+                            }
+                        />
                 </View>
             </View>
 
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     dataWrapper: {marginTop: -1},
     filters: {paddingHorizontal: 10},
     row: {height: 40, backgroundColor: '#E7E6E1'},
-    danger: {backgroundColor: 'red', color: '#fff'},
-    white: {backgroundColor: '#fff'}
+    danger: {backgroundColor: 'rgb(206,60,62)', color: '#fff'},
+    green: {backgroundColor: 'rgb(77, 173, 74)'}
 });
 

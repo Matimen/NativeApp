@@ -45,7 +45,7 @@ export default class HomeScreen extends Component {
                     <Card style={{flex: 0}}>
                         <CardItem>
                             <Body>
-                            <Text>ESIM - Event and Service Impact Manager</Text>
+                                <Text>ESIM - Event and Service Impact Manager</Text>
                             </Body>
                         </CardItem>
                         <CardItem>
@@ -74,11 +74,11 @@ export default class HomeScreen extends Component {
                         </CardItem>
                         <CardItem>
                             <Left>
-                                <Text>Twojej uwagi wymaga {this.state.alertsData.filter(item => item.AlertStatusId).length} spraw</Text>
+                                <Text style={{color: 'grey'}}>Twojej uwagi wymaga {this.state.alertsData.filter(item => item.AlertStatusId).length} spraw</Text>
                             </Left>
                         </CardItem>
                     </Card>
-                    <Card title={'Aktywności'}>
+                    <Card title={'Lista aktywności'}>
                         <SwipeList/>
                     </Card>
                 </ScrollView>

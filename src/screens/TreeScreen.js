@@ -7,8 +7,7 @@ import {Card} from "react-native-elements";
 
 export default class TreeScreen extends Component {
     static navigationOptions = {
-        drawerLabel: 'Usługi IT - drzewko',
-        drawerIcon: ({tintColor}) => (<Icon name={'ios-add'} color={tintColor}/>),
+        drawerLabel: () => null
     };
 
     state = {
