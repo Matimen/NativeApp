@@ -15,6 +15,7 @@ import TableFilters from "./src/components/filters/tableFilters";
 import ServicesDetails from "./src/screens/ServicesDetails";
 
 import TreeScreen from "./src/screens/TreeScreen";
+import LoginScreen from "./src/screens/LoginScreen";
 
 export default class App extends React.Component {
 
@@ -30,7 +31,7 @@ export default class App extends React.Component {
         );
     }
 }
-async function registerForPushNotificationsAsync() {
+let registerForPushNotificationsAsync = async () => {
     const { status: existingStatus } = await Permissions.getAsync(
         Permissions.NOTIFICATIONS
     );
@@ -55,7 +56,7 @@ async function registerForPushNotificationsAsync() {
 }
 const Navigator = createDrawerNavigator(
     {
-
+        'Login': LoginScreen,
         'Strona Główna': HomeScreen,
         'Alerty': CardAlertsScreen,
         'Stany Usług IT': StateofServicesScreen,
