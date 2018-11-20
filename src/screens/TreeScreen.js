@@ -72,7 +72,7 @@ export default class TreeScreen extends Component {
                                 <Text style={{marginLeft: 20 * level, fontSize: 20}}>
                                     {
                                         item.collapsed !== null ?
-                                            item.collapsed ? <Icon name={'arrow-dropright'} style={{fontSize: 30, color: 'red',}}></Icon> : <Icon name={'arrow-dropdown'} style={{fontSize: 30}}></Icon>
+                                            item.collapsed ? <Icon name={'arrow-dropright'} style={{fontSize: 30,}}></Icon> : <Icon name={'arrow-dropdown'} style={{fontSize: 30}}></Icon>
                                             :
                                             <Text> - </Text>
                                     }
