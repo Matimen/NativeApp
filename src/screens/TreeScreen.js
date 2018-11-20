@@ -69,14 +69,14 @@ export default class TreeScreen extends Component {
                         onItemPress={console.log('')}
                         renderItem={(item, level) => (
                             <View>
-                                <Text style={{marginLeft: 25 * level, fontSize: 22}}>
+                                <Text style={{marginLeft: 20 * level, fontSize: 20}}>
                                     {
                                         item.collapsed !== null ?
-                                            item.collapsed ? <Icon name={'arrow-dropright'}></Icon> : <Icon name={'arrow-dropdown'}></Icon>
+                                            item.collapsed ? <Icon name={'arrow-dropright'} style={{fontSize: 30, color: 'red',}}></Icon> : <Icon name={'arrow-dropdown'} style={{fontSize: 30}}></Icon>
                                             :
                                             <Text> - </Text>
                                     }
-                                    <Text style={{paddingLeft: 10}} onPress={()=>this.props.navigation.navigate('Szczegóły usług IT')}>{item.name}</Text>
+                                    <Text style={{marginHorizontal:40}} onPress={()=>this.props.navigation.navigate('Szczegóły usług IT')}>{item.name}</Text>
                                 </Text>
                             </View>
                         )}
