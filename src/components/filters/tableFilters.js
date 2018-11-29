@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from "react-native";
 import React, {Component} from "react";
-import _ from 'lodash';
-import {getData} from "../../api/api";
-import {Container, Header, Content, Card, CardItem, Body, Button, Icon} from 'native-base';
+
+import {CardItem, Body, Button, Icon} from 'native-base';
+import {Card} from "react-native-elements";
 
 export default class TableFilters extends Component {
     static navigationOptions = {
@@ -23,20 +23,13 @@ export default class TableFilters extends Component {
     render() {
         return (
             <View>
-                <Card>
-                    <CardItem header>
-                        <Text>ESIM - Event and Service Impact Manager</Text>
-                    </CardItem>
+                <Card containerStyle={{padding: 0}}>
                     <CardItem>
+                        <Text>ESIM - Event and Service Impact Manager</Text>
                         <Body style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',}}>
                         <Button success style={styles.btn} onPress={() => this.filter(0)}>
                             <Text >
                                 {this.props.alertsData.filter(item => item.AlertStatusId === 0).length}
-                            </Text>
-                        </Button>
-                        <Button info style={styles.btn} onPress={() => this.filter(1)}>
-                            <Text >
-                                {this.props.alertsData.filter(item => item.AlertStatusId === 1).length}
                             </Text>
                         </Button>
                         <Button warning style={styles.btn} onPress={() => this.filter(2)}>

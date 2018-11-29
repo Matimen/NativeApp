@@ -20,7 +20,7 @@ import LoginScreen from "./src/screens/LoginScreen";
 export default class App extends React.Component {
 
     componentDidMount() {
-        registerForPushNotificationsAsync();
+        //registerForPushNotificationsAsync();
         StatusBar.setHidden(true);
     }
 
@@ -58,9 +58,9 @@ async function registerForPushNotificationsAsync() {
 
 const Navigator = createDrawerNavigator(
     {
-        'Usługi IT - drzewko': TreeScreen,
-        'Login': LoginScreen,
         'Strona Główna': HomeScreen,
+        'Login': LoginScreen,
+        'Usługi IT - drzewko': TreeScreen,
         'Alerty': CardAlertsScreen,
         'Stany Usług IT': StateofServicesScreen,
         'Usługi IT': ServicesofItScreen,

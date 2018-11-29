@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import {Table, Row, TableWrapper, Cell} from 'react-native-table-component';
-import {Icon, Container, Content} from "native-base";
+import {Icon} from "native-base";
 import {
     View, StyleSheet, ScrollView, ActivityIndicator, Text,  Dimensions
 } from 'react-native';
-import Moment from 'moment';
+
 import _ from 'lodash';
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import TableFilters from "../components/filters/tableFilters";
 import {getData} from "../api/api";
-import {Card, ListItem} from "react-native-elements";
 import {AlertsCard} from "../components/alerts-cards/alerts-card";
 
 const {height} = Dimensions.get('window');
@@ -81,6 +79,7 @@ export default class CardAlertsScreen extends Component {
         const scrollEnabled = this.state.screenHeight > height;
         return (
             <ScrollView
+                style={{paddingBottom: 10}}
                 onContentSizeChange={this.onContentSizeChange}
                 scrollEnabled={scrollEnabled}>
                 <DrawerIcon name={'Alerty'}/>
