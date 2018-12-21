@@ -58,10 +58,10 @@ async function registerForPushNotificationsAsync() {
 
 const Navigator = createDrawerNavigator(
     {
-        'Strona Główna': HomeScreen,
         'Login': LoginScreen,
-        'Usługi IT - drzewko': TreeScreen,
+        'Strona Główna': HomeScreen,
         'Alerty': CardAlertsScreen,
+        'Usługi IT - drzewko': TreeScreen,
         'Stany Usług IT': StateofServicesScreen,
         'Usługi IT': ServicesofItScreen,
         'Panel użytkownika': UserScreen,

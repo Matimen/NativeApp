@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {
-    View, Text, StyleSheet, ScrollView,
+    View, Text, StyleSheet, ScrollView, TouchableOpacity,
 } from 'react-native';
 import DrawerIcon from '../components/menu-icon/menu-icon';
 import {Card, Divider} from "react-native-elements";
 import {CardItem, Button, Left, Right, Body, Icon, Separator} from 'native-base';
 import {getData} from "../api/api";
 import SwipeList from "../components/swipe-list/swipe-list";
+import { Dialog } from 'react-native-simple-dialogs';
 
 export default class HomeScreen extends Component {
     constructor() {
@@ -14,6 +15,8 @@ export default class HomeScreen extends Component {
         this.state = {
             alertsData: [],
             count: '',
+            dialogESIM: false,
+            dialogMS: false
         }
     }
 
@@ -28,13 +31,10 @@ export default class HomeScreen extends Component {
                 alertsData: response.data,
             })
         })
-            .then(() => {
-                this.createList();
-            });
     }
 
-    createList() {
-
+    openDialog = (show) => {
+        this.setState({ dialogESIM: show });
     }
 
     render() {
@@ -46,11 +46,42 @@ export default class HomeScreen extends Component {
                         <Card containerStyle={{margin: 0, padding: 0, marginBottom: 10}}>
                             <CardItem>
                                 <Body style={{flexDirection: 'row', padding: 0 }}>
-                                    <Button style={{backgroundColor: '#777', marginRight: 10, padding: 5, height: 20}}><Text style={{color: 'white'}}>ESIM-A</Text></Button>
-                                    <Button success style={{height: 20, padding: 5}}><Text style={{color: 'white'}}>Aktywny</Text></Button>
+                                <TouchableOpacity onPress={() => this.setState({dialogESIM: true})} style={{display: 'flex', flexDirection: 'row'}}>
+                                    <Text style={{backgroundColor: '#777', marginRight: 10, padding: 3}}><Text style={{color: 'white'}}>ESIM-A</Text></Text>
+                                    <Text style={{backgroundColor: '#4dad4a', padding: 3}}><Text style={{color: 'white'}}>AKTYWNY</Text></Text>
+                                </TouchableOpacity>
+                                <Dialog
+                                    visible={this.state.dialogESIM}
+                                    title="Wybór ESIM"
+                                    onTouchOutside={() => this.setState({dialogESIM: false})}>
+                                    <Divider style={{marginVertical: 20}}/>
+                                    <TouchableOpacity onPress={() => this.setState({dialogESIM: false})} style={{display: 'flex', flexDirection: 'row'}}>
+                                        <Text style={{backgroundColor: '#777', marginRight: 10, padding: 3}}><Text style={{color: 'white'}}>ESIM-A</Text></Text>
+                                        <Text style={{backgroundColor: '#4dad4a', padding: 3}}><Text style={{color: 'white'}}>AKTYWNY</Text></Text>
+                                    </TouchableOpacity>
+                                    <Divider style={{marginVertical: 20}}/>
+                                    <View style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+                                        <Text onPress={() => this.setState({dialogESIM: false})} style={{backgroundColor: '#fff', color: 'black', paddingHorizontal: 20, borderWidth: 0.7}}><Text>Zamknij</Text></Text>
+                                    </View>
+                                </Dialog>
                                 </Body>
                                 <Body style={{flexDirection: 'row', padding: 0, borderLeftWidth: 1, borderLeftColor: 'grey', }}>
-                                    <Button style={{backgroundColor: '#777', padding: 5, height: 20, marginLeft:30}}><Text style={{color: 'white'}}>Min. Spr. EKW</Text></Button>
+                                    <TouchableOpacity onPress={() => this.setState({dialogMS: true})} style={{display: 'flex', flexDirection: 'row'}}>
+                                        <Text style={{backgroundColor: '#777', marginLeft: 25, padding: 3}}><Text style={{color: 'white'}}>Min. Spr. EKW</Text></Text>
+                                    </TouchableOpacity>
+                                    <Dialog
+                                        visible={this.state.dialogMS}
+                                        title="Wybór klienta"
+                                        onTouchOutside={() => this.setState({dialogMS: false})}>
+                                        <Divider style={{marginVertical: 20}}/>
+                                        <TouchableOpacity onPress={() => this.setState({dialogMS: false})} style={{display: 'flex', flexDirection: 'row'}}>
+                                            <Text style={{backgroundColor: '#777', marginLeft: 25, padding: 3}}><Text style={{color: 'white'}}>Min. Spr. EKW</Text></Text>
+                                        </TouchableOpacity>
+                                        <Divider style={{marginVertical: 20}}/>
+                                        <View style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+                                            <Text onPress={() => this.setState({dialogMS: false})} style={{backgroundColor: '#fff', color: 'black', paddingHorizontal: 20, borderWidth: 0.7}}><Text>Zamknij</Text></Text>
+                                        </View>
+                                    </Dialog>
                                 </Body>
                             </CardItem>
                         </Card>
@@ -82,7 +113,7 @@ export default class HomeScreen extends Component {
                             <CardItem>
                                 <Left>
                                     <Text
-                                        style={{color: '#BAB8B9', fontSize: 16}}>Alerty: <Text style={{color: '#73879C', fontSize: 24, fontWeight: 'bold'}}>{this.state.alertsData.filter(item => item.AlertStatusId).length}</Text></Text>
+                                        style={{color: '#BAB8B9', fontSize: 15}}>Alerty NOT CLOSED: <Text style={{color: '#73879C', fontSize: 24, fontWeight: 'bold'}}>{this.state.alertsData.filter(item => item.AlertStatusId).length}</Text></Text>
                                 </Left>
                                 <Right>
                                     <Icon name={'notifications'} color={'#BAB8B8'}/>
@@ -117,7 +148,7 @@ export default class HomeScreen extends Component {
                             <CardItem>
                                 <Left>
                                     <Text
-                                        style={{color: '#BAB8B9', fontSize: 16}}>Stany usług IT: <Text style={{color: '#73879C', fontSize: 24, fontWeight: 'bold'}}>{this.state.alertsData.filter(item => item.AlertStatusId).length}</Text></Text>
+                                        style={{color: '#BAB8B9', fontSize: 15}}>Stany usług IT: <Text style={{color: '#73879C', fontSize: 24, fontWeight: 'bold'}}>{this.state.alertsData.filter(item => item.AlertStatusId).length}</Text></Text>
                                 </Left>
                                 <Right>
                                     <Icon name={'paper'} color={'#BAB8B8'}/>
@@ -152,7 +183,7 @@ export default class HomeScreen extends Component {
                             <CardItem>
                                 <Left>
                                     <Text
-                                        style={{color: '#BAB8B9', fontSize: 16}}>Usługi IT: <Text style={{color: '#73879C', fontSize: 24, fontWeight: 'bold'}}>{this.state.alertsData.filter(item => item.AlertStatusId).length}</Text></Text>
+                                        style={{color: '#BAB8B9', fontSize: 15}}>Usługi IT: <Text style={{color: '#73879C', fontSize: 24, fontWeight: 'bold'}}>{this.state.alertsData.filter(item => item.AlertStatusId).length}</Text></Text>
                                 </Left>
                                 <Right>
                                     <Icon name={'desktop'} color={'#BAB8B8'}/>
@@ -160,7 +191,7 @@ export default class HomeScreen extends Component {
                             </CardItem>
                         </Card>
                     </Card>
-                    <Card containerStyle={{marginBottom: 15}} titleStyle={{color: 'grey', fontSize: 14}} title={'Lista aktywności'}>
+                    <Card containerStyle={{marginBottom: 15}} titleStyle={{color: 'grey', fontSize: 14}} title={'Alerty NOT CLOSED'}>
                         <SwipeList/>
                     </Card>
                 </ScrollView>

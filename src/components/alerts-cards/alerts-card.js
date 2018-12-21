@@ -12,7 +12,8 @@ export class AlertsCard extends Component{
         return (
             <Card
                 key={this.props.index}
-                title={this.props.rowData.ClientName + ' ' + 'ID: ' + this.props.rowData.AlertId}>
+                title={this.props.rowData.ClientName + ' ' + 'ID: ' + this.props.rowData.AlertId}
+                titleStyle={{backgroundColor: alertsColor[this.props.rowData.AlertStatusId].color, borderRadius: 5}}>
                 <Text style={styles.card}>
                     ID: {this.props.rowData.AlertId}
                 </Text>
@@ -37,3 +38,29 @@ const styles = StyleSheet.create({
         marginBottom: 5
     }
 });
+export const alertsColor = {
+
+    0: {
+        color: '#4dad4a'
+    },
+
+    1: {
+        color: '#529ff3'
+    },
+
+    2: {
+        color: '#fbbf43'
+    },
+
+    3: {
+        color: '#eb9e3e'
+    },
+
+    4: {
+        color: '#e05254'
+    },
+
+    5: {
+        color: '#ce3c3e'
+    },
+};

@@ -55,7 +55,7 @@ export default class UserScreen extends Component {
                 <View>
                     <Card title={'Moje ustawienia'}>
                         <FormLabel>Domyślny alert:</FormLabel>
-                        <FormInput> Krzysztof</FormInput>
+                        <FormInput> Default</FormInput>
                         <FormLabel>Domyślny ekran</FormLabel>
                         <FormInput> Alerty</FormInput>
                     </Card>
